@@ -20,7 +20,7 @@
     [result mapKeyPath:@"rate"
             toProperty:@"rate"
         withValueBlock:^id _Nullable(NSString * _Nonnull key, id  _Nullable value) {
-            return @([value floatValue]);
+            return @([value doubleValue]);
     }];
     
     return result;
