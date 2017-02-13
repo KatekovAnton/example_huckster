@@ -20,8 +20,6 @@ extern NSString * const kHRequestMethodGET;
 
 @interface HBaseRequestController : NSObject
 
-@property (nonatomic, assign, readwrite) Class objectClass;
-
 - (id)init;
 - (id)initWithNetworkManager:(HNetworkManager *)manager;
 
@@ -50,13 +48,6 @@ extern NSString * const kHRequestMethodGET;
  *@return by-default it is a result of method `performMappingForResponce: forRequsetUrl:`
  */
 - (id)handleSuccessResponce:(id)responce forRequestURL:(NSString*)requestURL;
-
-/*
- *Perform mapping operation.
- *
- *@return mapped object. this object will be sent to completion handler
- */
-- (id)performMappingForResponce:(id)responce forRequsetURL:(NSString*)requestURL;
 
 /*
  *Abort current loading process

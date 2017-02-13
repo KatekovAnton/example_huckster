@@ -102,7 +102,6 @@
         self.indexOffset += shiftCells;
         
         [self reloadData];
-        
     }
 }
 

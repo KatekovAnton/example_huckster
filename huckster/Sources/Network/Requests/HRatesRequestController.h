@@ -7,7 +7,6 @@
 //
 
 #import "HBaseRequestController.h"
-#import "IHConstructable.h"
 
 
 

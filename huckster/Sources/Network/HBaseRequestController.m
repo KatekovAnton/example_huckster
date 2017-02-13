@@ -8,7 +8,6 @@
 
 #import "HBaseRequestController.h"
 #import "HNetworkManager.h"
-#import "IHConstructable.h"
 #import "AFNetworking.h"
 
 
@@ -101,18 +100,6 @@ NSString * const kHRequestMethodGET       = @"GET";
 
 - (id)handleSuccessResponce:(id)responce forRequestURL:(NSString*)requestURL
 {
-    return [self performMappingForResponce:responce forRequsetURL:requestURL];
-}
-
-- (id)performMappingForResponce:(id)responce forRequsetURL:(NSString*)requestURL
-{
-    if (responce)
-    {
-        if ([self.objectClass conformsToProtocol:@protocol(IHConstructable)]) {
-            return [self.objectClass objectFromExternalRepresentation:responce];
-        }
-    }
-    
     return nil;
 }
 

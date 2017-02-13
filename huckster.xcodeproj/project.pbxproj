@@ -60,7 +60,6 @@
 		6CB01FDB1E4F490A00913E21 /* HCurrencyFromCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCurrencyFromCollectionViewCell.xib; sourceTree = "<group>"; };
 		6CC310181E4F60670010B33F /* HBaseRequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBaseRequestController.h; sourceTree = "<group>"; };
 		6CC310191E4F60670010B33F /* HBaseRequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBaseRequestController.m; sourceTree = "<group>"; };
-		6CC3101B1E4F60CE0010B33F /* IHConstructable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IHConstructable.h; sourceTree = "<group>"; };
 		6CC3101C1E4F62940010B33F /* HNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNetworkManager.h; sourceTree = "<group>"; };
 		6CC3101D1E4F62940010B33F /* HNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNetworkManager.m; sourceTree = "<group>"; };
 		6CC310261E4FBDA30010B33F /* HRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRate.h; sourceTree = "<group>"; };
@@ -200,7 +199,6 @@
 		6C2BECE81E4C770E003CF822 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				6CC3101B1E4F60CE0010B33F /* IHConstructable.h */,
 				6C4068691E520C9900F0B298 /* HFormatting.h */,
 				6C40686A1E520C9900F0B298 /* HFormatting.m */,
 				6C4068791E52336F00F0B298 /* UIView+Utils.h */,

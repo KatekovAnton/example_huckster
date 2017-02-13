@@ -49,7 +49,7 @@
      }];
 }
 
-- (id)performMappingForResponce:(id)responce forRequsetURL:(NSString*)requestURL
+- (id)handleSuccessResponce:(id)responce forRequestURL:(NSString *)requestURL
 {
     if (![responce isKindOfClass:[NSXMLParser class]]) {
         return nil;
