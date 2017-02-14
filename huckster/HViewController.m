@@ -63,7 +63,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCurrenciesChanged:) name:HDataProviderDidReloadRates object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoadingChanged:) name:HDataProviderDidChangeLoadingState object:nil];
     
-    
     [self updateSelectedCurrencies];
     [self updateLoadingState];
 }
@@ -101,17 +100,7 @@
     NSError *error = nil;
     [[HDataProvider sharedInstance].converter performConvertationWithValue:_selected fromCurrency:_currencyFrom toCurrency:_currencyTo error:&error];
     if (error != nil) {
-        NSInteger code = error.code;
-        if (code == kErrorCodeCurrencyConverterInsufficientFunds) {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
-                                                                           message:@"You don't have enough funds to perform this exchange."
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            [alert setModalPresentationStyle:UIModalPresentationPopover];
-            [alert addAction:[UIAlertAction actionWithTitle:@"Ok"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:NULL]];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
+        [self showError:error];
         return;
     }
     _selected = 0;
@@ -141,6 +130,28 @@
      }];
 }
 
+- (void)showError:(NSError *)error
+{
+    NSString *errorText = @"Something went wrong.";
+    if (error.code == kErrorCodeCurrencyConverterCannotRevert) {
+        errorText = @"Nothing to revert";
+    }
+    else if (error.code == kErrorCodeCurrencyConverterInvalidCurrency) {
+        errorText = @"Currency is not available at the moment";
+    }
+    if (error.code == kErrorCodeCurrencyConverterInsufficientFunds) {
+        errorText = @"You don't have enough funds to perform this exchange.";
+    }
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+                                                                   message:errorText
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert setModalPresentationStyle:UIModalPresentationPopover];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ok"
+                                              style:UIAlertActionStyleCancel
+                                            handler:NULL]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - Helpers
 
 - (HCurrency *)selectedCurrencyInCollectionView:(HInfiniteCollectionView *)collectionView
@@ -152,7 +163,7 @@
 
 - (void)setCurrencyFrom:(HCurrency *)currencyFrom currencyTo:(HCurrency *)currencyTo
 {
-    BOOL destinationCurrencyChanged = currencyFrom != nil && _currencyTo != nil &&![currencyFrom isEqual:_currencyFrom];
+    BOOL destinationCurrencyChanged = currencyFrom != nil && _currencyTo != nil && ![currencyFrom isEqual:_currencyFrom];
     
     if (destinationCurrencyChanged) {
         NSError *error = nil;
@@ -179,9 +190,9 @@
     _pageCurrencyFrom.currentPage = [[HDataProvider sharedInstance].converter.convertableCurrencies indexOfObject:currencyFrom];
     _pageCurrencyTo.currentPage = [[HDataProvider sharedInstance].converter.convertableCurrencies indexOfObject:currencyTo];
     
-    if ([currencyFrom isEqual:currencyTo] ||
-        currencyFrom.identifier.length == 0 ||
-        currencyTo.identifier.length == 0) {
+    if ([_currencyFrom isEqual:_currencyTo] ||
+        _currencyFrom.identifier.length == 0 ||
+        _currencyTo.identifier.length == 0) {
         _buttonExchange.enabled = NO;
         _labelRate.text = @"";
         return;

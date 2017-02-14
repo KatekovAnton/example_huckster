@@ -16,6 +16,7 @@
 NSString * const kErrorDomainCurrencyConverter = @"kErrorDomainCurrencyConverter";
 NSInteger const kErrorCodeCurrencyConverterInvalidCurrency = 1;
 NSInteger const kErrorCodeCurrencyConverterInsufficientFunds = 2;
+NSInteger const kErrorCodeCurrencyConverterCannotRevert = 3;
 
 
 
