@@ -51,6 +51,17 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="7ft-3P-wZS"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwT-hs-U0r">
+                                <rect key="frame" x="0.0" y="28" width="80" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Bw9-9D-gAR"/>
+                                    <constraint firstAttribute="height" constant="40" id="CLn-dW-Stc"/>
+                                </constraints>
+                                <state key="normal" title="Revert"/>
+                                <connections>
+                                    <action selector="onRevert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VCS-7f-lwO"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ab0-ca-VsW" customClass="HInfiniteCollectionView">
                                 <rect key="frame" x="0.0" y="225" width="375" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,6 +146,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="DWr-vz-c0L" firstAttribute="centerX" secondItem="ab0-ca-VsW" secondAttribute="centerX" id="0AM-XX-RbJ"/>
+                            <constraint firstItem="hwT-hs-U0r" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="28" id="3IB-6h-O2q"/>
                             <constraint firstItem="ab0-ca-VsW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6It-Ws-pYK"/>
                             <constraint firstItem="OGn-ud-mV2" firstAttribute="centerX" secondItem="uPO-Xp-QjW" secondAttribute="centerX" id="6nF-fL-sq3"/>
                             <constraint firstItem="OGn-ud-mV2" firstAttribute="bottom" secondItem="uPO-Xp-QjW" secondAttribute="bottom" id="AQy-R3-eWa"/>
@@ -142,6 +154,7 @@
                             <constraint firstAttribute="trailing" secondItem="0qh-ck-gOH" secondAttribute="trailing" id="CbW-Gb-9vC"/>
                             <constraint firstItem="DWr-vz-c0L" firstAttribute="bottom" secondItem="ab0-ca-VsW" secondAttribute="bottom" id="Dak-Oo-U7Y"/>
                             <constraint firstAttribute="trailing" secondItem="uPO-Xp-QjW" secondAttribute="trailing" id="E3q-aG-a5f"/>
+                            <constraint firstItem="hwT-hs-U0r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ega-FQ-WCR"/>
                             <constraint firstItem="aqM-gn-3Th" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="30" id="HCp-io-WY7"/>
                             <constraint firstAttribute="trailing" secondItem="ab0-ca-VsW" secondAttribute="trailing" id="HoP-MY-IBk"/>
                             <constraint firstItem="MJG-Kc-iBx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="41" id="Jcc-vr-5Ib"/>

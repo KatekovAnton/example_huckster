@@ -89,6 +89,18 @@
     [self updateLoadingState];
 }
 
+- (IBAction)onRevert:(id)sender
+{
+    NSError *error = nil;
+    [[HDataProvider sharedInstance].converter revertLastOperationWithError:&error];
+    if (error != nil) {
+        [self showError:error];
+        return;
+    }
+    
+    [self updateCollectionViewsContent];
+}
+
 - (IBAction)onExchange:(id)sender
 {
     if (_currencyFrom.identifier.length == 0) {

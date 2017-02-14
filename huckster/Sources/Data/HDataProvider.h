@@ -20,7 +20,7 @@ extern NSString * const HDataProviderDidReloadRates;
 
 
 
-@interface HDataProvider : NSObject 
+@interface HDataProvider : NSObject
 
 @property (nonatomic, readonly) BOOL loading;
 @property (nonatomic, readonly) HAccount *account;

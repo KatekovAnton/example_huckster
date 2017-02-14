@@ -32,6 +32,10 @@ NSInteger const kErrorCodeCurrencyConverterCannotRevert = 3;
 
 @interface HCurrencyConverter () {
     NSMutableDictionary *_ratesByCurrency;
+    
+    double _lastOperationValue;
+    HCurrency *_lastOperationFromCurrency;
+    HCurrency *_lastOperationToCurrency;
 }
 
 @end
@@ -44,8 +48,17 @@ NSInteger const kErrorCodeCurrencyConverterCannotRevert = 3;
 {
     if (self = [super init]) {
         _account = account;
+        
+        _lastOperationValue = 0;
+        _lastOperationFromCurrency = nil;
+        _lastOperationToCurrency = nil;
     }
     return self;
+}
+
+- (BOOL)canRevertLastOperation
+{
+    return _lastOperationValue != 0;
 }
 
 - (BOOL)performConvertationWithValue:(double)value fromCurrency:(HCurrency *)from toCurrency:(HCurrency *)to error:(NSError **)error
@@ -71,6 +84,10 @@ NSInteger const kErrorCodeCurrencyConverterCannotRevert = 3;
     
     [self setBalance:newCurrentBalance forCurrency:from];
     [self setBalance:newBalanceForDestinationCurrency forCurrency:to];
+    
+    _lastOperationValue = convertedValue;
+    _lastOperationFromCurrency = from;
+    _lastOperationToCurrency = to;
     
     return YES;
 }
@@ -195,6 +212,33 @@ NSInteger const kErrorCodeCurrencyConverterCannotRevert = 3;
     if ([currency.identifier isEqualToString:@"GBP"]) {
         self.account.balanceGbp = @(balance);
     }
+}
+
+- (BOOL)revertLastOperationWithError:(NSError **)error
+{
+    if (!self.canRevertLastOperation) {
+        if (error != NULL) {
+            *error = [NSError errorWithDomain:kErrorDomainCurrencyConverter
+                                         code:kErrorCodeCurrencyConverterCannotRevert
+                                     userInfo:nil];
+        }
+        return NO;
+    }
+    
+    NSError *internalError = nil;
+    [self performConvertationWithValue:_lastOperationValue fromCurrency:_lastOperationToCurrency toCurrency:_lastOperationFromCurrency error:&internalError];
+    if (internalError != nil) {
+        if (error != NULL) {
+            *error = internalError;
+        }
+        return NO;
+    }
+    
+    _lastOperationValue = 0;
+    _lastOperationFromCurrency = nil;
+    _lastOperationToCurrency = nil;
+    
+    return YES;
 }
 
 - (void)reset
