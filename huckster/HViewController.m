@@ -48,6 +48,7 @@
         _collectionCurrencyFrom.pagingEnabled = YES;
         _collectionCurrencyFrom.dataSource = self;
         _collectionCurrencyFrom.delegate = self;
+        _collectionCurrencyFrom.exclusiveTouch = YES;
     }
     {
         [_collectionCurrencyTo registerNib:[UINib nibWithNibName:@"HCurrencyToCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HCurrencyToCollectionViewCell"];
@@ -58,7 +59,10 @@
         _collectionCurrencyTo.pagingEnabled = YES;
         _collectionCurrencyTo.dataSource = self;
         _collectionCurrencyTo.delegate = self;
+        _collectionCurrencyFrom.exclusiveTouch = YES;
     }
+    
+    _buttonExchange.exclusiveTouch = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCurrenciesChanged:) name:HDataProviderDidReloadRates object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoadingChanged:) name:HDataProviderDidChangeLoadingState object:nil];
