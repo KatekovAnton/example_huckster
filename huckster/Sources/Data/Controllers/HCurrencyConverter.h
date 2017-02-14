@@ -19,11 +19,13 @@
 extern NSString * const kErrorDomainCurrencyConverter;
 extern NSInteger const kErrorCodeCurrencyConverterInvalidCurrency;
 extern NSInteger const kErrorCodeCurrencyConverterInsufficientFunds;
+extern NSInteger const kErrorCodeCurrencyConverterCannotRevert;
 
 
 
 @interface HCurrencyConverter : NSObject
 
+@property (nonatomic, readonly) BOOL canRevertLastOperation;
 @property (nonatomic, readonly) HAccount *account;
 @property (nonatomic, copy) NSArray<__kindof HRate *> *rates;
 @property (nonatomic, readonly) NSArray<__kindof HRate *> *convertableRates;
@@ -35,6 +37,8 @@ extern NSInteger const kErrorCodeCurrencyConverterInsufficientFunds;
 - (double)calculateConvertationWithValue:(double)value fromCurrency:(HCurrency *)from toCurrency:(HCurrency *)to error:(NSError **)error;
 - (double)conversionRateFromCurrency:(HCurrency *)from toCurrency:(HCurrency *)to error:(NSError **)error;
 - (double)balanceForCurrency:(HCurrency *)currency;
+
+- (BOOL)revertLastOperationWithError:(NSError **)error;
 
 - (void)reset;
 
