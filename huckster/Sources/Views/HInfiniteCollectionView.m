@@ -203,6 +203,17 @@
     }
 }
 
+- (NSIndexPath *)realIndexPathAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger index = indexPath.row - self.indexOffset;
+    index = [self externalIndex:index];
+    NSInteger count = [self numberOfItemsInSection:0];
+    if (count != 0) {
+        index = index % ([self numberOfItemsInSection:0] / [self duplicateCount]);
+    }
+    return [NSIndexPath indexPathForRow:index inSection:0];
+}
+
 @end
 
 

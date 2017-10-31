@@ -32,21 +32,26 @@
 - (void)loadECBRatesWithCompletionHandler:(HRatesRequestControllerHandler)handler
 {
     [self cleanup];
-    [self sendRequrestWithMethod:kHRequestMethodGET
-                       URLString:@"stats/eurofxref/eurofxref-daily.xml"
-                      parameters:nil
-                         success:^(id responseObject, NSString *requstURL)
-     {
-         if (handler) {
-             handler(responseObject, nil);
-         }
-     }
-                         failure:^(NSError *error, NSString *requstURL)
-     {
-         if (handler) {
-             handler(nil, error);
-         }
-     }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"111data" ofType:@"xml"]];
+        
+        handler([self handleSuccessResponce:[[NSXMLParser alloc] initWithData:data] forRequestURL:nil], nil);
+    });
+//    [self sendRequrestWithMethod:kHRequestMethodGET
+//                       URLString:@"stats/eurofxref/eurofxref-daily.xml"
+//                      parameters:nil
+//                         success:^(id responseObject, NSString *requstURL)
+//     {
+//         if (handler) {
+//             handler(responseObject, nil);
+//         }
+//     }
+//                         failure:^(NSError *error, NSString *requstURL)
+//     {
+//         if (handler) {
+//             handler(nil, error);
+//         }
+//     }];
 }
 
 - (id)handleSuccessResponce:(id)responce forRequestURL:(NSString *)requestURL

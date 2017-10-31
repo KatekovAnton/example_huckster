@@ -14,4 +14,6 @@
 
 @property (nonatomic, readonly) NSUInteger duplicateCount;
 
+- (NSIndexPath *)realIndexPathAtIndexPath:(NSIndexPath *)indexPath;
+
 @end

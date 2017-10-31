@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B7DBA9F4AFF98695B1833B5 /* Pods_huckster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7A247AAB9134F7C4393C8A /* Pods_huckster.framework */; };
+		6C0671021FA8AD1B00F0BB65 /* 111data.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6C0671011FA8AD1B00F0BB65 /* 111data.xml */; };
 		6C2BECCA1E4C751B003CF822 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2BECC91E4C751B003CF822 /* main.m */; };
 		6C2BECD01E4C751B003CF822 /* HViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2BECCF1E4C751B003CF822 /* HViewController.m */; };
 		6C2BECD31E4C751B003CF822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C2BECD11E4C751B003CF822 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C0671011FA8AD1B00F0BB65 /* 111data.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = 111data.xml; sourceTree = "<group>"; };
 		6C2BECC51E4C751B003CF822 /* huckster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huckster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2BECC91E4C751B003CF822 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6C2BECCE1E4C751B003CF822 /* HViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HViewController.h; path = ../../HViewController.h; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				6C2BECE51E4C75A0003CF822 /* Assets.xcassets */,
+				6C0671011FA8AD1B00F0BB65 /* 111data.xml */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				6C4068671E50F48500F0B298 /* HCurrencyToCollectionViewCell.xib in Resources */,
 				6C2BECD81E4C751B003CF822 /* LaunchScreen.storyboard in Resources */,
 				6C2BECE61E4C75A0003CF822 /* Assets.xcassets in Resources */,
+				6C0671021FA8AD1B00F0BB65 /* 111data.xml in Resources */,
 				6CB01FDD1E4F490A00913E21 /* HCurrencyFromCollectionViewCell.xib in Resources */,
 				6C2BECD31E4C751B003CF822 /* Main.storyboard in Resources */,
 			);
@@ -341,9 +345,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-huckster/Pods-huckster-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworkActivityLogger/AFNetworkActivityLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyMapping/EasyMapping.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworkActivityLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyMapping.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -356,13 +369,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-huckster-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A0255FDFF405426C9406CA39 /* [CP] Copy Pods Resources */ = {

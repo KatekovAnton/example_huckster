@@ -173,7 +173,9 @@
 - (HCurrency *)selectedCurrencyInCollectionView:(HInfiniteCollectionView *)collectionView
 {
     NSUInteger index = (collectionView.contentOffset.x + collectionView.frame.size.width / 2) / collectionView.frame.size.width;
-    HCurrency *result = [HDataProvider sharedInstance].converter.convertableCurrencies[index % collectionView.duplicateCount];
+    index = [collectionView realIndexPathAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]].row;
+    NSArray *a = [HDataProvider sharedInstance].converter.convertableCurrencies;
+    HCurrency *result = a[index % collectionView.duplicateCount];
     return result;
 }
 
